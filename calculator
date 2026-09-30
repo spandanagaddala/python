@@ -1,0 +1,65 @@
+# Simple Calculator in Python
+
+def add(x, y):
+    """Return sum of x and y"""
+    return x + y
+
+def subtract(x, y):
+    """Return difference of x and y"""
+    return x - y
+
+def multiply(x, y):
+    """Return product of x and y"""
+    return x * y
+
+def divide(x, y):
+    """Return division of x by y, handle division by zero"""
+    if y == 0:
+        raise ValueError("Division by zero is not allowed.")
+    return x / y
+
+def get_number(prompt):
+    """Safely get a number from user input"""
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.")
+
+def main():
+    print("=== Simple Calculator ===")
+    print("Select operation:")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Division (/)")
+    
+    choice = input("Enter choice (1/2/3/4): ").strip()
+
+    if choice not in ('1', '2', '3', '4'):
+        print("Invalid choice. Please restart and select a valid option.")
+        return
+
+    num1 = get_number("Enter first number: ")
+    num2 = get_number("Enter second number: ")
+
+    try:
+        if choice == '1':
+            result = add(num1, num2)
+            op = "+"
+        elif choice == '2':
+            result = subtract(num1, num2)
+            op = "-"
+        elif choice == '3':
+            result = multiply(num1, num2)
+            op = "*"
+        elif choice == '4':
+            result = divide(num1, num2)
+            op = "/"
+
+        print(f"{num1} {op} {num2} = {result}")
+    except ValueError as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    main()
